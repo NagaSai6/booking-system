@@ -1,0 +1,65 @@
+/* sign page css */
+#sign-body{
+    max-height: 100vh;
+    background-color: #E8F6EF;
+}
+
+.center{
+ display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%)
+}
+.sign-h2{
+    position: absolute;
+    left:50%;
+    top: 35%;
+    font-family: 'Bona Nova', serif;
+    transform: translate(-50%,-35%)  
+}
+
+.abcRioButtonLightBlue {
+    background-color: #fff;
+    color: #757575;
+}
+.abcRioButton {
+    border-radius: 1px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: background-color .218s,border-color .218s,box-shadow .218s;
+    transition: background-color .218s,border-color .218s,box-shadow .218s;
+    -webkit-user-select: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    color: #262626;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: auto;
+}
+.abcRioButtonContentWrapper {
+    height: 100%;
+    width: 100%;
+}
+.abcRioButtonIcon {
+    float: left;
+}
+.abcRioButtonSvg {
+    display: block;
+}
+.abcRioButtonContents {
+    font-family: Roboto,arial,sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .21px;
+    margin-left: 6px;
+    margin-right: 6px;
+    vertical-align: top;
+}
