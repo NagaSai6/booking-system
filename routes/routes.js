@@ -16,6 +16,7 @@ app.get("/google/auth/redirect",passport.authenticate("google", {
     failureRedirect: "/login"
 }))
 app.get("/login",homePage().login)
+app.get("/auth/google/logout",homePage().logOut)
 }
 
 module.exports = routes 
