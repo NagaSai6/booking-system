@@ -63,3 +63,12 @@
     margin-right: 6px;
     vertical-align: top;
 }
+
+/* home page css */
+
+nav{
+    padding: 8px;
+}
+.nav-content{
+    justify-content: flex-end;
+}
