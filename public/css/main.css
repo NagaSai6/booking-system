@@ -72,3 +72,11 @@ nav{
 .nav-content{
     justify-content: flex-end;
 }
+
+/* add instruments css */
+
+.form-div {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
