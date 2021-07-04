@@ -19,36 +19,48 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    
   </head>
   <body>
     <%- include("navbar") %>
-  <div id="form-div">
-    <form class="row g-3">
-      <div class="col-md-6">
-        <label for="inputInstrumentSourceLink" class="form-label">Instrument Image Source Link</label>
-        <input type="text" class="form-control" id="inputInstrumentSourceLink">
-      </div>
-      <div class="col-md-6">
-        <button type="submit" class="btn btn-primary">Validate</button>
-      </div>
-      <div class="col-12">
-        <label for="inputInstrumentName" class="form-label">Instrument Name</label>
-        <input type="text" class="form-control" id="inputInstrumentName" placeholder="Ex : Microscrope">
-      </div>
-      <div class="col-12">
-        <label for="inputNumberOfInstruments" class="form-label">Number Of instruments</label>
-        <input type="text" class="form-control" id="inputNumberOfInstruments" placeholder="Ex : 3">
-      </div>
-      <div class="col-md-6">
-        <label for="inputCity" class="form-label">City</label>
-        <input type="text" class="form-control" id="inputCity">
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-  
+    <div id="form-div">
+      <form class="row g-3">
+        <div class="image-source-link">
+          <div class="form-group mx-sm-3 mb-2 image-source-subdiv">
+            <input
+              type="text"
+              class="form-control"
+              id="inputImageSourceLink"
+              placeholder="Instrument Image Link"
+            />
+          </div>
+          <button id="submitButton" class="btn btn-primary mb-2">Validate</button>
+        </div>
+        <div class="col-12">
+          <label for="inputInstrumentName" class="form-label"
+            >Instrument Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="inputInstrumentName"
+            placeholder="Ex : Microscrope"
+          />
+        </div>
+        <div class="col-12">
+          <label for="inputNumberOfInstruments" class="form-label"
+            >Number Of instruments</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="inputNumberOfInstruments"
+            placeholder="Ex : 3"
+          />
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
