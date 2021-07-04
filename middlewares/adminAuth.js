@@ -1,6 +1,6 @@
 
 function adminAuth(req,res,next){
-    if(req.isAuthenticated() && user.role==="admin"){
+    if(req.isAuthenticated() && req.user.role==="admin"){
         return next()
     }
     return res.redirect("/")
