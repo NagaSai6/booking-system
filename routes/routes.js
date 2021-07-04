@@ -1,10 +1,13 @@
 // controllers 
 
-const homePage = require("../controllers/homepagecontroller")
-
+const homePage = require("../controllers/homepagecontroller");
+const admin = require("../controllers/adminController");
 // middlewares
 
 const authenticate = require("../middlewares/userAuthentication");
+const adminAuth = require("../middlewares/adminAuth");
+
+
 const passport = require("passport")
 
 
@@ -17,6 +20,10 @@ app.get("/google/auth/redirect",passport.authenticate("google", {
 }))
 app.get("/login",homePage().login)
 app.get("/auth/google/logout",homePage().logOut)
+
+// admin routes
+
+app.get('/admin/add-instrumnets',adminAuth,admin().addInstruments)
 }
 
 module.exports = routes 
