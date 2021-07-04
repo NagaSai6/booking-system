@@ -75,11 +75,9 @@ nav{
 
 /* add instruments css */
 
-/* #form-div {
-    max-width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-} */
+#form-div {
+ margin-top: 20px;
+}
 
 .image-source-link{
     display: flex;
