@@ -42,9 +42,9 @@ app.use(
     }),
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 60 * 6,
     },
-    // cookie valid for one day
+    // cookie valid for six hours
   })
 );
 app.use(express.static("public"));
