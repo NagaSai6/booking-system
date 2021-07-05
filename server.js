@@ -4,12 +4,12 @@ const mongoose = require("mongoose");
 const express = require("express");
 const ejs = require("ejs");
 const session = require("express-session");
+const flash = require("express-flash");
 const helmet = require("helmet");
-const mongodb_store = require("connect-mongo")
+const mongodb_store = require("connect-mongo");
 
 const app = express();
 app.set("view engine", "ejs");
-
 
 // connection to DB
 
@@ -35,10 +35,10 @@ app.use(
     secret: process.env.SECRET_SESSION,
     resave: false,
     store: mongodb_store.create({
-        mongoUrl:process.env.URL,
-        autoRemove: 'disabled',
-        dbName:'bookingsDB',
-        collectionName:'sessions'
+      mongoUrl: process.env.URL,
+      autoRemove: "disabled",
+      dbName: "bookingsDB",
+      collectionName: "sessions",
     }),
     saveUninitialized: false,
     cookie: {
@@ -57,6 +57,8 @@ app.use(
   })
 );
 
+app.use(flash());
+
 // configuring Passport
 
 const passportInit = require("./auth/passport");
@@ -71,7 +73,6 @@ app.use((req, res, next) => {
 });
 
 require("./routes/routes")(app);
-
 
 const server = app.listen(process.env.PORT || 7000, function () {
   console.log("Server is up on port 7000");

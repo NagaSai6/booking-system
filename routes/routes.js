@@ -1,4 +1,4 @@
-// controllers 
+// controllers
 
 const homePage = require("../controllers/homepagecontroller");
 const admin = require("../controllers/adminController");
@@ -7,23 +7,27 @@ const admin = require("../controllers/adminController");
 const authenticate = require("../middlewares/userAuthentication");
 const adminAuth = require("../middlewares/adminAuth");
 
-
-const passport = require("passport")
-
+const passport = require("passport");
 
 function routes(app) {
-app.get("/",authenticate,homePage().homePage)
-app.get("/auth/google",passport.authenticate("google", { scope: ["profile", "email"] }))
-app.get("/google/auth/redirect",passport.authenticate("google", {
-    successRedirect: "/",
-    failureRedirect: "/login"
-}))
-app.get("/login",homePage().login)
-app.get("/auth/google/logout",homePage().logOut)
+  app.get("/", authenticate, homePage().homePage);
+  app.get(
+    "/auth/google",
+    passport.authenticate("google", { scope: ["profile", "email"] })
+  );
+  app.get(
+    "/google/auth/redirect",
+    passport.authenticate("google", {
+      successRedirect: "/",
+      failureRedirect: "/login",
+    })
+  );
+  app.get("/login", homePage().login);
+  app.get("/auth/google/logout", homePage().logOut);
 
-// admin routes
+  // admin routes
 
-app.get('/admin/add-instrumnets',adminAuth,admin().addInstruments)
+  app.get("/admin/add-instrumnets", adminAuth, admin().addInstruments);
 }
 
-module.exports = routes 
+module.exports = routes;

@@ -30,7 +30,7 @@
   <body>
     <%- include("navbar") %>
     <div id="form-div">
-      <form class="row g-3">
+      <form class="row g-3" action="/admin/add-instrument" method="POST">
         <div class="image-source-link">
           <div class="form-group mx-sm-3 mb-2 image-source-subdiv">
             <input
@@ -63,7 +63,7 @@
         </div>
 
         <div class="col-12 image-source-link">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
         </div>
       </form>
     </div>
