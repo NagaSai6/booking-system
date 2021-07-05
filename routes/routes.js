@@ -27,7 +27,8 @@ function routes(app) {
 
   // admin routes
 
-  app.get("/admin/add-instrumnets", adminAuth, admin().addInstruments);
+  app.get("/admin/add-instruments", adminAuth, admin().addInstruments);
+  app.post("/admin/add-instruments",adminAuth,admin().adminAddInstruments);
 }
 
 module.exports = routes;

@@ -1,21 +1,21 @@
-const mongoose = require('mongoose');
-
-
+const mongoose = require("mongoose");
+const Category = require("../models/category") ;
 const instrumentSchema = new mongoose.Schema({
-    nameOfInstrument:{
+    categoryId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Category",
+        required:true
+    },
+    instrumentName:{
         type:String,
         required:true
     },
-    nunmberOfInstruments:{
-        type:Number,
-        required:true
-    },
-    instrumentImageSourceLink:{
+    instrumentImage:{
         type:String,
         required:true
-    } 
-},{timestamps:true})
+    }
+},{timestamps:true}) ;
 
-const Instrument = mongoose.model(instrumentSchema) ;
+const Instrument = new mongoose.model("Instrument",instrumentSchema);
 
-exports.module = Instrument 
+module.exports = Instrument
