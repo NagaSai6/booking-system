@@ -9,12 +9,16 @@ function adminController() {
       res.render("add-instruments");
     },
     async adminAddInstruments(req, res) {
+      console.log(req.body);
       let imageLink = req.body.imageLink;
       let instrumentName = req.body.instrumentNaam.toLowerCase();
       let instrumentNumber = parseInt(req.body.instrumentNumber);
 
-      // find and delete if already exists
+      if(!instrumentName || !instrumentNumber){
+        return res.json({emptyFields:"error"})
+      }
 
+      // find and delete if already exists
       try {
         await Category.deleteMany({ categoryName: instrumentName });
         Instrument.deleteMany({ instrumentName: instrumentName });
@@ -28,7 +32,7 @@ function adminController() {
       }
 
       // imageUrl validation
-      if (validUrl.isUri(imageLink)) {
+       if(validUrl.isUri(imageLink)) {
         const category = new Category({
           categoryName: instrumentName,
           availableInstrumentsInCategory: instrumentNumber,

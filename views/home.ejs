@@ -26,19 +26,24 @@
      <div class="container">
        <div class="row">
 
-        <div class="col-lg-4 col-md-3 col-sm-12">
+        
         <%  category.forEach(function(category){ %>
+          <div class="col-lg-4 col-sm-12">
           <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="<%= category.categoryImage %>" alt="Card image cap" load="lazy">
             <div class="card-body">
             
               <h5 class="card-title"><%= category.categoryName.replace(/\w/, c => c.toUpperCase()) %></h5>
               <p class="card-text">Click below button to see number of instruments of this type available to book</p>
-              <a href="/<%= category._id %>" class="btn btn-primary">See More </a>
+              <a href="/category/<%=category.categoryName %>/<%= category._id %>" class="btn btn-primary">See More </a>
             </div>
-       <%   }) %>
           </div>
         </div>
+       <%   }) %>
+
+       
+          
+     
 
        </div>
 

@@ -29,7 +29,9 @@ submitButton.addEventListener("click", function (event) {
 
 
 function triggerAjax(formData){
-
+  const instrumentImageSourceLink = document.getElementById(
+    "inputImageSourceLink"
+  ).value;
   let instrumentName = document.getElementById(
     "inputInstrumentName"
   ).value;

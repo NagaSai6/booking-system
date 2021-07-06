@@ -1,4 +1,5 @@
 const Category = require("../models/category");
+const Instrument = require("../models/instrument") ;
 
 function homePageController() {
   return {
@@ -20,6 +21,13 @@ function homePageController() {
       req.logout();
       return res.redirect("/");
     },
+    instruments(req,res){
+      console.log(req.params.name);
+      console.log(req.params.token);
+      Instrument.find({"categoryId":req.params.token},(err,instrument)=>{
+        res.render("instrument",{instrument})
+      })
+    }
   };
 }
 

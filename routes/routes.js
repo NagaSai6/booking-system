@@ -2,6 +2,7 @@
 
 const homePage = require("../controllers/homepagecontroller");
 const admin = require("../controllers/adminController");
+const booking = require("../controllers/bookingController");
 // middlewares
 
 const authenticate = require("../middlewares/userAuthentication");
@@ -29,6 +30,10 @@ function routes(app) {
 
   app.get("/admin/add-instruments", adminAuth, admin().addInstruments);
   app.post("/admin/add-instruments",adminAuth,admin().adminAddInstruments);
+
+  // user routes
+  app.get("/category/:name/:token",authenticate,homePage().instruments);
+  app.get("/instrument/:name/:token",authenticate,booking().bookingPage)
 }
 
 module.exports = routes;
