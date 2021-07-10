@@ -1,73 +1,43 @@
-const mongoose = require("mongoose");
-const Category = require("../models/category");
 const Instrument = require("../models/instrument");
-const validUrl = require("valid-url");
 
-function adminController() {
+
+function adminController(){
   return {
-    addInstruments(req, res) {
-      res.render("add-instruments");
+    adminPage(req,res){
+      res.render("add-instruments")
     },
-    async adminAddInstruments(req, res) {
-      console.log(req.body);
-      let imageLink = req.body.imageLink;
-      let instrumentName = req.body.instrumentNaam.toLowerCase();
-      let instrumentNumber = parseInt(req.body.instrumentNumber);
+    addInstruments(req,res){
+      // console.log(req.body);
+      const dataArray = Object.keys(req.body).map(i => req.body[i]) ;
+     // check whether category exists
 
-      if(!instrumentName || !instrumentNumber){
-        return res.json({emptyFields:"error"})
-      }
+    let  categoryName = dataArray[0].category;
 
-      // find and delete if already exists
-      try {
-        await Category.deleteMany({ categoryName: instrumentName });
-        Instrument.deleteMany({ instrumentName: instrumentName });
-      } catch (e) {
-        console.log(e);
+    Instrument.find({"category":categoryName},(err,result)=>{
+      if(result.length != 0){
+        return res.json({"success":"category already exist"})
+      }else{
+        Instrument.insertMany(dataArray,{ordered:true}).then(result=>{
+          return res.json({"success": "successfully added"})
+        }).catch(err=>{
+          return res.json({"success":"Failed to add"})
+        })
       }
-      try {
-      await  Instrument.deleteMany({ instrumentName: instrumentName });
-      } catch (e) {
-        console.log(e);
-      }
+    }).then(result=>{
+      console.log(result);
+    }).catch(err=>{
+      console.log(err);
+    })
 
-      // imageUrl validation
-       if(validUrl.isUri(imageLink)) {
-        const category = new Category({
-          categoryName: instrumentName,
-          availableInstrumentsInCategory: instrumentNumber,
-          categoryImage: imageLink,
-        });
-        category
-          .save()
-          .then((category) => {
-            for (let i = 0; i < instrumentNumber; i++) {
-              const instrument = new Instrument({
-                categoryId: category._id,
-                instrumentName: category.categoryName,
-                instrumentImage: category.categoryImage,
-              });
-              console.log(instrument.instrumentName);
-              instrument.save().then((instrument) => {
-                Instrument.populate(
-                  instrument,
-                  { path: "categoryId" },
-                  (err, savedInstrument) => {
-                    console.log(savedInstrument);
-                  }
-                );
-              });
-            }
-            return res.json({ dataSuccesfullySaved: "success-data" });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        return res.json({ invalidImageUrl: "error" });
-      }
-    },
-  };
-}
+
+
+
+
+  
+
+    }
+
+    } 
+} 
 
 module.exports = adminController;

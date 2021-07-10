@@ -6,49 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <meta name="google-signin-client_id" content="779212046974-gbs0leuvj9mfobbpthl8d5ak8uedqd6m.apps.googleusercontent.com"> -->
     <title>lab instruments booking</title>
-    <!-- CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- <link rel="stylesheet" href="/css/timepicker.min.css"> -->
     <link rel="stylesheet" href="/css/main.css">
-     <!-- JavaScript Bundle with Popper -->
-    <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"
-  ></script>
+
   </head>
   <body>
     <%- include("navbar") %>
-     <div class="container">
-       <div class="row">
-
-        
-        <%  category.forEach(function(category){ %>
-          <div class="col-lg-4 col-sm-12">
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="<%= category.categoryImage %>" alt="Card image cap" load="lazy">
-            <div class="card-body">
-            
-              <h5 class="card-title"><%= category.categoryName.replace(/\w/, c => c.toUpperCase()) %></h5>
-              <p class="card-text">Click below button to see number of instruments of this type available to book</p>
-              <a href="/category/<%=category.categoryName %>/<%= category._id %>" class="btn btn-primary">See More </a>
+    
+    <div class="container">
+    <form action="" method="post">
+      <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-8">
+            <div class="search">
+               <i class="fa fa-search"></i>
+                <input required list="category" type="text" class="form-control" placeholder="Search Instrument To Book">  
+                <datalist id="category">
+            <% for(let i=0;i<result.length;i++){ %>
+              <option value="<%= result[i] %>">
+             <%} %>
+                </datalist>
+              </div>
+             
+           <div class="form-row d-flex" >
+            <div class="col my-2 mx-2">
+              <input id="datepicker" required type="text" class="form-control" placeholder="Pick Date">
             </div>
-          </div>
+            <div class="col my-2 mx-2">
+              <input id="starttime" required type="text" class="form-control" placeholder="Pick Start Time">
+            </div>
+           </div>
+           <div class="form-row d-flex" >
+            <div class="col my-2 mx-2">
+              <input id="endtime" required type="text" class="form-control" placeholder="Pick End Time">
+            </div>
+            <div class="col my-2 mx-2">
+              <button class="btn btn-md btn-primary">Check Availability</button>
+            </div>
+           </div>
+              
         </div>
-       <%   }) %>
-
-       
-          
      
-
-       </div>
-
-     </div>
-     
-  
+    </div>
+    </form>
+  </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <!-- <script src="/js/timepicker.min.js"></script> -->
+    <script src="/js/home.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   </body>
 </html>

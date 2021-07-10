@@ -7,7 +7,7 @@ const session = require("express-session");
 const flash = require("express-flash");
 const helmet = require("helmet");
 const mongodb_store = require("connect-mongo");
-
+const path = require("path");
 const app = express();
 app.set("view engine", "ejs");
 
@@ -22,13 +22,6 @@ mongoose
     console.log("Successfully Connected to MongoDB");
   });
 mongoose.set("useCreateIndex", true);
-
-// const connection = mongoose.connection;
-
-// let mongoStore = new mongodb_store({
-//   mongooseConnection: connection,
-//   collection: "sessions",
-// });
 
 app.use(
   session({
@@ -56,6 +49,8 @@ app.use(
     extended: false,
   })
 );
+
+
 
 app.use(flash());
 

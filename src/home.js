@@ -1,0 +1,8 @@
+
+$( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+
+
+
+
