@@ -2151,8 +2151,40 @@ function collectDataFromForm() {
   axios__WEBPACK_IMPORTED_MODULE_0___default().post("/user/check-availability", queryObject).then(function (res) {
     var data = JSON.parse(res.data.message);
     console.log(data);
+    var element = document.getElementById('attach-available-items');
+
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+
+    var parentDiv = document.getElementById("attach-available-items");
+
+    for (var i = 0; i < data.length; i++) {
+      var divElement = document.createElement("div");
+      var anchorElement = document.createElement("a");
+      anchorElement.role = "button";
+      anchorElement.setAttribute("data-instrument", JSON.stringify(data[i]));
+      anchorElement.className = "btn btn-md btn-success";
+      anchorElement.href = "/user/book-instrument/" + data[i]._id;
+      anchorElement.innerHTML = data[i].instrumentName;
+      divElement.className = "col my-2";
+      divElement.appendChild(anchorElement);
+      parentDiv.appendChild(divElement);
+    }
+
+    ;
+    var target = $("#attach-available-items");
+
+    if (target.length) {
+      $('html,body').animate({
+        scrollTop: target.offset().top
+      }, 1000);
+      return false;
+    }
   });
-}
+} // <div class="col my-2">
+//       <a role="button" class="btn btn-md btn-success" href="http://">combiflash 203</a>
+//      </div>
 })();
 
 /******/ })()
