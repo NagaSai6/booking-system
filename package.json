@@ -6,6 +6,9 @@
   "scripts": {
     "build": "babel src -d lib"
   },
+  "engines":{
+    "node":"14.17.3"
+  },
   "author": "nagasai",
   "license": "ISC",
   "dependencies": {
