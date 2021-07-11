@@ -29,7 +29,7 @@ function routes(app) {
   // global route
 
   app.get("/login",homePage().loginPage);
-  app.get("/auth/google/logout",authenticate,homePage().userLogout)
+  app.get("/user/google/logout",authenticate,homePage().userLogout)
 }
 
 module.exports = routes;

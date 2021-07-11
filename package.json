@@ -6,7 +6,8 @@
   "scripts": {
   },
   "engines":{
-    "node":"14.17.3"
+    "node":"14.17.3",
+    "npm":"7.19.1"
   },
   "author": "nagasai",
   "license": "ISC",
