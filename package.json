@@ -4,7 +4,6 @@
   "description": "booking items in chemical lab",
   "main": "server.js",
   "scripts": {
-    "build": "babel src -d lib"
   },
   "engines":{
     "node":"14.17.3"
