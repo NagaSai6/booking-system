@@ -1,3 +1,5 @@
+import axios from "axios";
+
 $( function() {
 let starttimeOptions ={
   vibrate:true,
@@ -15,7 +17,7 @@ let endtimeOptions = {
   autoclose:true
 };
 let datepickerOptions ={
-  dateFormat:"dd/mm/yy",
+  dateFormat:"dd-mm-yy",
   minDate : new Date(),
   maxDate : "+1m"
 };
@@ -36,6 +38,18 @@ let datepickerOptions ={
    let queryDate = $("#datepicker").val();
    let queryStart = $("#starttime").val();
    let queryEnd = $("#endtime").val();
+
+   let queryObject = {
+     queryCategory :queryCategory,
+     queryDate : queryDate ,
+     queryStart : queryStart,
+     queryEnd : queryEnd
+   }
+
+   axios.post("/user/check-availability",queryObject).then(res=>{
+     let data = JSON.parse(res.data.message)
+     console.log(data);
+   })
  
   }
 

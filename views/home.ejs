@@ -33,15 +33,15 @@
              
            <div class="form-row d-flex" >
             <div class="col my-2 mx-2">
-              <input id="datepicker" autocomplete="off" required type="text" class="form-control" placeholder="Pick Date">
+              <input id="datepicker" autocomplete="off" onkeydown="return false" required type="text" class="form-control" placeholder="Pick Date">
             </div>
             <div class="col my-2 mx-2 input-group startTimePicker">
-              <input id="starttime" autocomplete="off" required type="text" class="form-control" placeholder="Start Time (24 hr Format)">
+              <input id="starttime" autocomplete="off" onkeydown="return false"  required type="text" class="form-control" placeholder="Start Time (24 hr Format)">
             </div>
            </div>
            <div class="form-row d-flex" >
             <div class="col my-2 mx-2 input-group">
-              <input id="endtime" autocomplete="off" required type="text" class="form-control" placeholder="End Time (24 hr Format)">
+              <input id="endtime" autocomplete="off" onkeydown="return false"  required type="text" class="form-control" placeholder="End Time (24 hr Format)">
             </div>
             <div class="col my-2 mx-2">
               <button type="submit" class="btn btn-md btn-primary">Check Availability</button>
@@ -52,6 +52,15 @@
      
     </div>
     </form>
+    <div class="row d-flex">
+      <div class="col  mx-2">
+       <a role="button" class="btn btn-md btn-success" href="http://">OK</a>
+ 
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" id="attach-available-items">
+
   </div>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/jquery-ui.min.js"></script> 

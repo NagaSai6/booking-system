@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../react/first-app"
+		},
+		{
+			"path": "../../react/01-starting-setup"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

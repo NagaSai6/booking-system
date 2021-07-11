@@ -1,6 +1,7 @@
 // controllers
 const homePage = require("../controllers/homepagecontroller");
 const admin    = require("../controllers/adminController");
+const booking  = require("../controllers/bookingController");
 // middlewares
 
 const authenticate = require("../middlewares/userAuthentication");
@@ -29,7 +30,10 @@ function routes(app) {
   // global route
 
   app.get("/login",homePage().loginPage);
-  app.get("/user/google/logout",authenticate,homePage().userLogout)
+  app.get("/user/google/logout",authenticate,homePage().userLogout);
+
+  // user routes
+  app.post("/user/check-availability",authenticate,booking().checkAvailability)
 }
 
 module.exports = routes;
