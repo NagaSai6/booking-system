@@ -65,6 +65,7 @@ function bookingController() {
                     bookedInstrument :instrumentName
                   }
                  }
+                 sgMail.send(mailOptions);
                 return res.json({ message: "Successfully Booked" });
              });
 
