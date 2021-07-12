@@ -11,6 +11,7 @@
   "author": "nagasai",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.5",
     "axios": "^0.21.1",
     "connect-mongo": "^4.4.1",
     "connect-mongodb-session": "^2.4.1",
