@@ -28,6 +28,8 @@ function routes(app) {
 
   app.get("/admin/add-instruments", adminAuth, admin().adminPage);
   app.post("/admin/add-instruments", adminAuth, admin().addInstruments);
+  app.get("/admin/manage-instruments",adminAuth,admin().manageInstruments);
+  app.post("/admin/manage-instruments",adminAuth,admin().editInstruments);
   // global route
 
   app.get("/login", homePage().loginPage);

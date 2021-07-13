@@ -69,8 +69,11 @@
 nav{
     padding: 8px;
 }
-.nav-content{
+/* .nav-content{
     justify-content: flex-end;
+} */
+.navlink{
+    color: antiquewhite;
 }
 
 /* add instruments css */
@@ -138,4 +141,28 @@ nav{
 }
 .instrument-div{
     text-align: center;
+}
+
+/* admin Edit instruments Page */
+
+#goBackDiv{
+    text-align: left;padding: 8px 0px 0px 8px;
+}
+#goBackButton{
+    border-radius:5px 20px 5px;
+    background: #E24C00;
+    color: antiquewhite;
+}
+.editInstrumentDiv{
+    text-align: center;
+    padding: 20px;
+}
+.editInstrumentDiv h1{
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.addInstrument{
+    text-align: center;
+    margin-bottom: 20px;
 }

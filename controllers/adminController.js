@@ -4,7 +4,7 @@ const Instrument = require("../models/instrument");
 function adminController(){
   return {
     adminPage(req,res){
-      res.render("add-instruments")
+      res.render("admin/add-instruments")
     },
     addInstruments(req,res){
       // console.log(req.body);
@@ -35,6 +35,32 @@ function adminController(){
 
   
 
+    },
+    manageInstruments(req,res){
+      Instrument.distinct("category",(err,result)=>{
+        res.render("admin/manage-instruments",{result})
+      }).then(success=>{
+        console.log(success);
+      }).catch(err=>{
+        console.log(err);
+      })           
+    },
+    editInstruments(req,res){
+      // res.render("admin/edit-instruments")
+      let searchQuery = req.body.searchInput.toLowerCase();
+      Instrument.find({"category":searchQuery},(err,editableItems)=>{
+          if(editableItems.length === 0){
+            req.flash("info","Category does not exist");
+            res.redirect('/admin/manage-instruments');
+          }else{
+            res.render("admin/edit-instruments",{editableItems})
+          }
+      }).then(success=>{
+        console.log(success);
+      }).catch(err=>{
+            req.flash("info","Something went Wrong on server side try again later");
+            res.redirect('/admin/manage-instruments');
+      })
     }
 
     } 

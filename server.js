@@ -40,9 +40,11 @@ app.use(
     // cookie valid for six hours
   })
 );
+app.use(flash());
 app.use(express.static("public"));
 
 app.use(express.json());
+
 
 app.use(
   express.urlencoded({
@@ -52,7 +54,7 @@ app.use(
 
 
 
-app.use(flash());
+
 
 // configuring Passport
 
@@ -60,6 +62,7 @@ const passportInit = require("./auth/passport");
 passportInit(passport);
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use((req, res, next) => {
   res.locals.session = req.session;
