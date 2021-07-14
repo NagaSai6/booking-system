@@ -29,9 +29,11 @@
 
 <br/>
 <ul> 
+<li><h5>Bootstrap</h5></li>
 <li><h5>JQuery UI</h5></li>
 <li><h5>Google Oauth</h5></li>
 <li><h5>Send Grid</h5></li>
+<li><h5>Icons8</h5></li>
 </ul>
 <br/>
 
