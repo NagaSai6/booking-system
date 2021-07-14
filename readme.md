@@ -40,4 +40,10 @@
 
 <h5>Laravel Mix</h5>
 
+<br/>
+
+# View Engine
+<br/>
+<h5>EJS</h5>
+<br/>
 
