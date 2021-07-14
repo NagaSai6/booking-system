@@ -43,12 +43,12 @@
 
 <br/>
 
-<h5>Laravel Mix</h5>
+<a href="https://laravel-mix.com/">Laravel Mix</a>
 
 <br/>
 
 # View Engine
 
 <br/>
-<h5>EJS</h5>
+<a href="https://ejs.co/">EJS</a>
 <br/>
