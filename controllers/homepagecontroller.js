@@ -11,7 +11,8 @@ function homepagecontroller(){
       res.render("sign")
     },
     userLogout(req,res){
-      req.logout()
+      req.session = null ;
+      req.logout();
       res.redirect("/")
     }
   }

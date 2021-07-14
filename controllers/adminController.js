@@ -109,7 +109,7 @@ function adminController() {
           res.json({ message: "failed" });
         });
     },
-  async  updateSingleInstrument(req, res) {
+  async updateSingleInstrument(req, res) {
       const updateData = Object.keys(req.body).map((i) => req.body[i]);
       let updateDocument = {};
       let id = updateData[3];
