@@ -20,8 +20,10 @@
 <br/>
 
 # Data Base
+<br/>
 
 <h5>MongoDB</h5>
+<br/>
 
 # JS Frame works and External API's
 
@@ -31,4 +33,11 @@
 <li><h5>Google Oauth</h5></li>
 <li><h5>Send Grid</h5></li>
 </ul>
+<br/>
+
+# Web Pack for compiling JS
+<br/>
+
+<h5>Laravel Mix</h5>
+
 
