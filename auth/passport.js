@@ -33,7 +33,7 @@ function init(passport) {
                 if (user) {
                   // if there is a user id already but no token (user was linked at one point and then removed)
                   if (!user.google.googleToken) {
-                    // user.googleToken = token;
+                    user.googleToken = token;
                     user.customerName = profile.displayName;
                     user.gmail = profile.emails[0].value; // pull the first email
                     // user.gmail_verified = profile.emails[0].verified ;
@@ -63,7 +63,7 @@ function init(passport) {
             var user = req.user; // pull the user out of the session
 
             user.googleId = profile.id;
-            // user.googleToken = token;
+            user.googleToken = token;
             user.customerName = profile.displayName;
             user.gmail = profile.emails[0].value; // pull the first email
             // user.gmail_verified = profile.emails[0].verified ;
