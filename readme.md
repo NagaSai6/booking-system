@@ -4,7 +4,7 @@
 <li><h5>Vanilla Js</h5></li>
 <li><h5>JQuery</h5></li>
 <li><h5>CSS</h5></li>
-<li><h5>HTMl</h5></li>
+<li><h5>HTML</h5></li>
 </ul>
 
 <br/>
