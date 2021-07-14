@@ -13538,31 +13538,38 @@ function collectDataFromForm() {
     queryEnd: queryEnd
   };
   axios__WEBPACK_IMPORTED_MODULE_0___default().post("/user/check-availability", queryObject).then(function (res) {
-    var data = JSON.parse(res.data.message);
-    console.log(data);
-    var parentDiv = document.getElementById("attach-available-items");
+    if (res.data.message) {
+      var data = JSON.parse(res.data.message);
+      console.log(data);
+      var parentDiv = document.getElementById("attach-available-items");
 
-    for (var i = 0; i < data.length; i++) {
-      var divElement = document.createElement("div");
-      var anchorElement = document.createElement("button"); //  anchorElement.setAttribute("onclick",initBook(this));
+      for (var i = 0; i < data.length; i++) {
+        var divElement = document.createElement("div");
+        var anchorElement = document.createElement("button"); //  anchorElement.setAttribute("onclick",initBook(this));
 
-      anchorElement.setAttribute("data-instrument", JSON.stringify(data[i]));
-      anchorElement.className = "btn btn-md btn-success bookingBuuton";
-      anchorElement.id = data[i].instrumentName;
-      anchorElement.href = "#";
-      anchorElement.innerHTML = data[i].instrumentName;
-      divElement.className = "col my-2 instrument-div";
-      divElement.appendChild(anchorElement);
-      parentDiv.appendChild(divElement);
-    }
+        anchorElement.setAttribute("data-instrument", JSON.stringify(data[i]));
+        anchorElement.className = "btn btn-md btn-success bookingBuuton";
+        anchorElement.id = data[i].instrumentName;
+        anchorElement.href = "#";
+        anchorElement.innerHTML = data[i].instrumentName;
+        divElement.className = "col my-2 instrument-div";
+        divElement.appendChild(anchorElement);
+        parentDiv.appendChild(divElement);
+      }
 
-    var target = $("#attach-available-items");
+      var target = $("#attach-available-items");
 
-    if (target.length) {
-      $("html,body").animate({
-        scrollTop: target.offset().top
+      if (target.length) {
+        $("html,body").animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    } else {
+      $("#errorMsg").html(res.data.error);
+      return setTimeout(function () {
+        window.location.reload();
       }, 1000);
-      return false;
     }
   });
 }

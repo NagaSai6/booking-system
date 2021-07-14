@@ -25,7 +25,10 @@ function availabilityController(){
         Number(extractEndTime.split(":")[1]) * 1000;
 
       var category = queryData.queryCategory ;
-
+      let isCategoryExist = await Instrument.find({"category":category}).exec();
+      if(isCategoryExist.length === 0){
+       return res.json({'error':'category not found'}) ;
+      }
 
       let conflictBookings = await Booking.find({"category":category,"date":extractDate})
       .where('startTime').lt(convertedEndTime)

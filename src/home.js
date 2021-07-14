@@ -51,6 +51,7 @@ function collectDataFromForm() {
   };
 
   axios.post("/user/check-availability", queryObject).then((res) => {
+   if(res.data.message){
     let data = JSON.parse(res.data.message);
     console.log(data);
   
@@ -78,6 +79,14 @@ function collectDataFromForm() {
       );
       return false;
     }
+   }else{
+     $("#errorMsg").html(res.data.error);
+    return setTimeout(() => {
+      window.location.reload()
+    }, 1000);
+   }
+
+   
   });
 }
 
