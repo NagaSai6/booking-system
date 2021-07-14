@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "customer",
     },
+    googleToken:{
+      type:String,
+      required:true
+    },
     googleId: {
       type: String,
       required: true,

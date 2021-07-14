@@ -32,22 +32,22 @@ function init(passport) {
 
                 if (user) {
                   // if there is a user id already but no token (user was linked at one point and then removed)
-                //   if (!user.google.googleToken) {
-                //     // user.googleToken = token;
-                //     user.customerName = profile.displayName;
-                //     user.gmail = profile.emails[0].value; // pull the first email
-                //     // user.gmail_verified = profile.emails[0].verified ;
-                //     user.save(function (err) {
-                //       if (err) throw err;
-                //       return done(null, user);
-                //     });
-                //   }
+                  if (!user.google.googleToken) {
+                    // user.googleToken = token;
+                    user.customerName = profile.displayName;
+                    user.gmail = profile.emails[0].value; // pull the first email
+                    // user.gmail_verified = profile.emails[0].verified ;
+                    user.save(function (err) {
+                      if (err) throw err;
+                      return done(null, user);
+                    });
+                  }
 
                   return done(null, user);
                 } else {
                   var newUser = new User();
                   newUser.googleId = profile.id;
-                //   newUser.googleToken = token;
+                  newUser.googleToken = token;
                   newUser.customerName = profile.displayName;
                   newUser.gmail = profile.emails[0].value; // pull the first email
                 //   user.gmail_verified = profile.emails[0].verified ;
