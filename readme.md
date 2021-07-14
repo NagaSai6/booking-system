@@ -1,4 +1,5 @@
-# Frontend Stack 
+# Frontend Stack
+
 <br/>
 <ul> 
 <li><h5>Vanilla Js</h5></li>
@@ -20,6 +21,7 @@
 <br/>
 
 # Data Base
+
 <br/>
 
 <h5>MongoDB</h5>
@@ -29,15 +31,16 @@
 
 <br/>
 <ul> 
-<li><h5>[Bootstrap](https://getbootstrap.com/)</h5></li>
-<li><h5>[JQuery UI](https://jqueryui.com/)</h5></li>
-<li><h5>[Google Oauth](https://console.developers.google.com/)</h5></li>
-<li><h5>[Send Grid](https://sendgrid.com/)</h5></li>
-<li><h5>[Icons8](https://icons8.com/)</h5></li>
+<li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="https://jqueryui.com/">JQuery UI</a></li>
+<li><a href="https://console.developers.google.com/">Google Oauth</a></li>
+<li><a href="https://sendgrid.com/">Send Grid</a></li>
+<li><a href="https://icons8.com/">Icons8</a></li>
 </ul>
 <br/>
 
 # Web Pack for compiling JS
+
 <br/>
 
 <h5>Laravel Mix</h5>
@@ -45,7 +48,7 @@
 <br/>
 
 # View Engine
+
 <br/>
 <h5>EJS</h5>
 <br/>
-
