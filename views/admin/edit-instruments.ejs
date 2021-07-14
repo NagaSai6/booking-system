@@ -30,8 +30,9 @@
     <div class="editInstrumentDiv"><h1><%=editableItems[0].category %></h1></div>
     <div class="my-2 addInstrument"><button data-addInstrument="<%=JSON.stringify(editableItems[0]) %>" class="btn btn-lg btn-success">Add Instrument</button></div>
     <div class="row">
-      <div class="col-lg-4">
       <% for(let i=0;i<editableItems.length;i++){ %>
+        <div class="col-lg-4">
+
         <div class="card" style="width: 18rem;">
             <img src="<%=editableItems[i].image %>" class="card-img-top" alt="..." load="lazy">
             <div class="card-body ">
@@ -40,15 +41,16 @@
                 <a href="#" data-update="<%=JSON.stringify(editableItems[i]) %>" class="btn btn-primary mx-2 ">
                     <span><img src="https://img.icons8.com/ios-glyphs/30/ffffff/approve-and-update--v1.png"/></span>
                     Update</a>
-                <a href="#" data-delete="<%=JSON.stringify(editableItems[i]) %>" class="btn btn-danger mx-2">
+                <button  data-delete="<%=JSON.stringify(editableItems[i]) %>" class="btn btn-danger mx-2 deleteData">
                     <span><img src="https://img.icons8.com/material-sharp/24/ffffff/delete-trash.png"/></span>
-                    Delete</a>
+                    Delete</button>
               </div>
               <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
             </div>
           </div>
+        </div>
    <%   } %>
-      </div>
+    
     </div>
 
     <!-- js -->

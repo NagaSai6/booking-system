@@ -30,6 +30,7 @@ function routes(app) {
   app.post("/admin/add-instruments", adminAuth, admin().addInstruments);
   app.get("/admin/manage-instruments",adminAuth,admin().manageInstruments);
   app.post("/admin/manage-instruments",adminAuth,admin().editInstruments);
+  app.post("/admin/delete-instruments",adminAuth,admin().deleteInstruments);
   // global route
 
   app.get("/login", homePage().loginPage);

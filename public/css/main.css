@@ -166,3 +166,8 @@ nav{
     text-align: center;
     margin-bottom: 20px;
 }
+.addInstrument button{
+    border-bottom-left-radius: 15px;
+    background: #FC5404;
+    border-color: #FFC074;
+}
