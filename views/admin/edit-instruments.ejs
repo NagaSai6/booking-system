@@ -38,9 +38,9 @@
             <div class="card-body ">
               <h5 class="card-title d-flex justify-content-center my-2"><%= editableItems[i].instrumentName %></h5>
               <div class="d-flex justify-content-center">
-                <a href="#" data-update="<%=JSON.stringify(editableItems[i]) %>" class="btn btn-primary mx-2 ">
+                <button href="#" data-update="<%=JSON.stringify(editableItems[i]) %>" class="btn btn-primary mx-2 updateData">
                     <span><img src="https://img.icons8.com/ios-glyphs/30/ffffff/approve-and-update--v1.png"/></span>
-                    Update</a>
+                    Update</button>
                 <button  data-delete="<%=JSON.stringify(editableItems[i]) %>" class="btn btn-danger mx-2 deleteData">
                     <span><img src="https://img.icons8.com/material-sharp/24/ffffff/delete-trash.png"/></span>
                     Delete</button>

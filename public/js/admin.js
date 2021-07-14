@@ -6042,6 +6042,47 @@ $("#AdminAddInstrument").on("click", /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }());
+$();
+$(".updateData").on("click", /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(e) {
+    var updateData, _yield$Swal$fire2, formValues;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            updateData = JSON.parse(e.currentTarget.dataset.update);
+            console.log(updateData);
+            _context2.next = 4;
+            return sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+              title: 'Update Instrument Details',
+              html: "<input value=\"".concat(updateData.category, "\" style=\"display:none;\" id=\"swal-input1\" class=\"swal2-input\">") + "<input value=\"".concat(updateData.image, "\"  id=\"swal-input2\" class=\"swal2-input\">") + "<input value=\"".concat(updateData.instrumentName, "\" id=\"swal-input3\" class=\"swal2-input\">") + "<input value=\"".concat(updateData._id, "\" style=\"display:none;\" id=\"swal-input4\" class=\"swal2-input\">"),
+              focusConfirm: false,
+              preConfirm: function preConfirm() {
+                return [document.getElementById('swal-input1').value, document.getElementById('swal-input2').value, document.getElementById('swal-input3').value, document.getElementById('swal-input4').value];
+              }
+            });
+
+          case 4:
+            _yield$Swal$fire2 = _context2.sent;
+            formValues = _yield$Swal$fire2.value;
+
+            if (formValues) {
+              triggerUpdate(formValues);
+            }
+
+          case 7:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function (_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}());
 $(".deleteData").on("click", function (e) {
   var extractedData = JSON.parse(e.currentTarget.dataset["delete"]);
   var id = extractedData._id;
@@ -6090,11 +6131,45 @@ function triggerAddSingleInstrument(data) {
         text: 'Successfully Added',
         timer: 1500
       });
+      return setTimeout(function () {
+        window.location.reload();
+      }, 1500);
+    } else {
+      return sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+        icon: 'error',
+        title: 'Failed',
+        text: 'Try again Later',
+        timer: 1500
+      });
+    }
+  });
+}
+
+function triggerUpdate(data) {
+  var convertedData = toObject(data);
+  axios__WEBPACK_IMPORTED_MODULE_2___default().post("/admin/update-single-instrument", convertedData).then(function (res) {
+    console.log(res);
+
+    if (res.data.message === 'success') {
+      sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Successfully Added',
+        timer: 1500
+      });
+      return setTimeout(function () {
+        window.location.reload();
+      }, 1500);
     }
 
-    setTimeout(function () {
-      window.location.reload();
-    }, 1500);
+    if (res.data.message === 'failed') {
+      return sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+        icon: 'error',
+        title: 'Failed',
+        text: 'Try again Later',
+        timer: 1500
+      });
+    }
   });
 }
 

@@ -27,6 +27,37 @@ $("#AdminAddInstrument").on("click",async (e)=>{
       }
 })
 
+$()
+
+
+$(".updateData").on("click",async (e)=>{
+    let updateData =JSON.parse(e.currentTarget.dataset.update);
+    console.log(updateData);
+    const { value: formValues } = await Swal.fire({
+        title: 'Update Instrument Details',
+        html:
+          `<input value="${updateData.category}" style="display:none;" id="swal-input1" class="swal2-input">` +
+          `<input value="${updateData.image}"  id="swal-input2" class="swal2-input">` +
+          `<input value="${updateData.instrumentName}" id="swal-input3" class="swal2-input">`+
+          `<input value="${updateData._id}" style="display:none;" id="swal-input4" class="swal2-input">`,
+
+        focusConfirm: false,
+        preConfirm: () => {
+          return [
+            document.getElementById('swal-input1').value,
+            document.getElementById('swal-input2').value,
+            document.getElementById('swal-input3').value,
+            document.getElementById('swal-input4').value
+          ]
+        }
+      })
+      if (formValues) {
+          triggerUpdate(formValues);
+      }
+})
+
+
+
 $(".deleteData").on("click",(e)=>{
   let extractedData =JSON.parse(e.currentTarget.dataset.delete);
   let id = extractedData._id;
@@ -81,12 +112,50 @@ function triggerAddSingleInstrument(data){
             text: 'Successfully Added',
             timer:1500
           })
+        return setTimeout(function(){
+            window.location.reload()
+        },1500)
+      }else{
+        return  Swal.fire({
+            icon: 'error',
+            title: 'Failed',
+            text: 'Try again Later',
+            timer:1500
+          }) 
       }
-      setTimeout(function(){
-          window.location.reload()
-      },1500)
+      
    })
 }
+
+function triggerUpdate(data){
+    let convertedData = toObject(data);
+    axios.post("/admin/update-single-instrument",convertedData).then(res=>{
+        console.log(res);
+        if(res.data.message === 'success'){
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Successfully Added',
+                timer:1500
+              })
+             return setTimeout(function(){
+                window.location.reload()
+            },1500)
+          }
+        if(res.data.message === 'failed'){
+          return  Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: 'Try again Later',
+                timer:1500
+              }) 
+        }
+         
+    })
+}
+
+
+
 
 function toObject(arr) {
     var rv = {};

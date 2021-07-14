@@ -65,44 +65,72 @@ function adminController() {
           res.redirect("/admin/manage-instruments");
         });
     },
-async deleteInstruments(req, res) {
-      let instrumentExist =await Instrument.find({_id:req.body.id}).exec();
+    async deleteInstruments(req, res) {
+      let instrumentExist = await Instrument.find({ _id: req.body.id }).exec();
       console.log(instrumentExist);
-      if(instrumentExist.length != 0){
-        Instrument.deleteOne({_id:req.body.id},(err,result)=>{
-          if(err){
+      if (instrumentExist.length != 0) {
+        Instrument.deleteOne({ _id: req.body.id }, (err, result) => {
+          if (err) {
             console.log(err);
-            return res.json({'message':'failed to delete'})
+            return res.json({ message: "failed to delete" });
           }
-        }).then(suc=>{
-          // console.log(suc);
-          return res.json({'message':'successfully deleted'})
-        }).catch(err=>{
-          console.log(err);
-          return res.json({'message':'failed to delete'})
-  
         })
-      }else{
-        return res.json({'message':'Item does not exist or already deleted'})
+          .then((suc) => {
+            // console.log(suc);
+            return res.json({ message: "successfully deleted" });
+          })
+          .catch((err) => {
+            console.log(err);
+            return res.json({ message: "failed to delete" });
+          });
+      } else {
+        return res.json({ message: "Item does not exist or already deleted" });
       }
     },
- async addSingleInstrument(req,res){
-      const dataOfSingleInstrument = Object.keys(req.body).map((i) => req.body[i]);
+    async addSingleInstrument(req, res) {
+      const dataOfSingleInstrument = Object.keys(req.body).map(
+        (i) => req.body[i]
+      );
       console.log(dataOfSingleInstrument);
-      let insertDocument ={};
-      insertDocument.category=dataOfSingleInstrument[0];
+      let insertDocument = {};
+      insertDocument.category = dataOfSingleInstrument[0];
       insertDocument.image = dataOfSingleInstrument[1];
       insertDocument.instrumentName = dataOfSingleInstrument[2];
       console.log(insertDocument);
 
-     const singleInstrument = new Instrument(insertDocument)
-     singleInstrument.save().then(success=>{
-       res.json({'message':'success'})
-     }).catch(err=>{
-       console.log(err);
-       res.json({'message':'failed'})
-     })
-    }
+      const singleInstrument = new Instrument(insertDocument);
+      singleInstrument
+        .save()
+        .then((success) => {
+          res.json({ message: "success" });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.json({ message: "failed" });
+        });
+    },
+  async  updateSingleInstrument(req, res) {
+      const updateData = Object.keys(req.body).map((i) => req.body[i]);
+      let updateDocument = {};
+      let id = updateData[3];
+      console.log(typeof(id));
+      updateDocument.image = updateData[1];
+      updateDocument.instrumentName = updateData[2];
+      console.log(updateDocument);
+
+     await Instrument.findByIdAndUpdate({_id:id},{$set:updateDocument},{new:true},(err,result)=>{
+        if(err){
+          console.log(err);
+          return res.json({'message':'failed'})
+        }else{
+          return res.json({'message':'success'})
+        }
+
+      }).then(success=>{
+        console.log(success);
+      })
+
+    },
   };
 }
 
