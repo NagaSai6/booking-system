@@ -86,6 +86,23 @@ async deleteInstruments(req, res) {
         return res.json({'message':'Item does not exist or already deleted'})
       }
     },
+ async addSingleInstrument(req,res){
+      const dataOfSingleInstrument = Object.keys(req.body).map((i) => req.body[i]);
+      console.log(dataOfSingleInstrument);
+      let insertDocument ={};
+      insertDocument.category=dataOfSingleInstrument[0];
+      insertDocument.image = dataOfSingleInstrument[1];
+      insertDocument.instrumentName = dataOfSingleInstrument[2];
+      console.log(insertDocument);
+
+     const singleInstrument = new Instrument(insertDocument)
+     singleInstrument.save().then(success=>{
+       res.json({'message':'success'})
+     }).catch(err=>{
+       console.log(err);
+       res.json({'message':'failed'})
+     })
+    }
   };
 }
 

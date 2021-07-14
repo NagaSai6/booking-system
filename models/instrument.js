@@ -9,6 +9,7 @@ const instrumentSchema = new mongoose.Schema(
     instrumentName: {
       type: String,
       required: true,
+      unique:true
     },
     image: {
       type: String,

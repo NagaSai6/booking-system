@@ -31,6 +31,7 @@ function routes(app) {
   app.get("/admin/manage-instruments",adminAuth,admin().manageInstruments);
   app.post("/admin/manage-instruments",adminAuth,admin().editInstruments);
   app.post("/admin/delete-instruments",adminAuth,admin().deleteInstruments);
+  app.post("/admin/add-single-instrument",adminAuth,admin().addSingleInstrument);
   // global route
 
   app.get("/login", homePage().loginPage);

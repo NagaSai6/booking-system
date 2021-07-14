@@ -28,7 +28,7 @@
     </div>
 
     <div class="editInstrumentDiv"><h1><%=editableItems[0].category %></h1></div>
-    <div class="my-2 addInstrument"><button data-addInstrument="<%=JSON.stringify(editableItems[0]) %>" class="btn btn-lg btn-success">Add Instrument</button></div>
+    <div class="my-2 addInstrument"><button id="AdminAddInstrument" data-addInstrument="<%=JSON.stringify(editableItems[0]) %>" class="btn btn-lg btn-success">Add Instrument</button></div>
     <div class="row">
       <% for(let i=0;i<editableItems.length;i++){ %>
         <div class="col-lg-4">
