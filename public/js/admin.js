@@ -6154,7 +6154,7 @@ function triggerUpdate(data) {
       sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
         icon: 'success',
         title: 'Success',
-        text: 'Successfully Added',
+        text: 'Successfully Updated',
         timer: 1500
       });
       return setTimeout(function () {

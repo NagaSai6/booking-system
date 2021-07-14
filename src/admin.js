@@ -135,7 +135,7 @@ function triggerUpdate(data){
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: 'Successfully Added',
+                text: 'Successfully Updated',
                 timer:1500
               })
              return setTimeout(function(){
