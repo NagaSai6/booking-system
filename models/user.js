@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema(
   {
     role: {
       type: String,
-      default: "customer",
+      default: "FTE",
     },
     googleToken:{
       type:String,

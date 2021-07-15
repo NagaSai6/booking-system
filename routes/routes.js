@@ -25,7 +25,7 @@ function routes(app) {
 
   app.get("/", authenticate, homePage().homePage);
   // admin routes
-
+  app.get("/admin/manage-users",adminAuth,admin().manageUsers)
   app.get("/admin/add-instruments", adminAuth, admin().adminPage);
   app.post("/admin/add-instruments", adminAuth, admin().addInstruments);
   app.get("/admin/manage-instruments",adminAuth,admin().manageInstruments);

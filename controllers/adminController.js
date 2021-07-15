@@ -1,5 +1,5 @@
 const Instrument = require("../models/instrument");
-
+const User = require("../models/user");
 function adminController() {
   return {
     adminPage(req, res) {
@@ -131,6 +131,15 @@ function adminController() {
       })
 
     },
+  async  manageUsers(req,res){
+        await User.find({},(err,users)=>{
+          if(err){
+            console.log(err);
+            return res.json({'message':'Failed to get users'})
+          }
+         return res.render('admin/manage-users',{users})
+        })
+    }
   };
 }
 
