@@ -2,6 +2,7 @@ const Booking = require("../models/booking");
 const moment = require("moment");
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API);
+const tdc = require("./timeAndDateController");
 
 function bookingController() {
   return {

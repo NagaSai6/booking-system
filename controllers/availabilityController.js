@@ -1,28 +1,16 @@
 const Booking = require("../models/booking");
 const Instrument = require("../models/instrument");
-const moment = require("moment");
+const tdc = require("./timeAndDateController");
 
 function availabilityController(){
   return {
    async checkAvailability(req, res) {
       let queryData = req.body;
-      // moment is depricated(nearly), has to replace with alternatives
-      let extractDate = moment.utc(
-        queryData.queryDate,
-        "DD-MM-YYYY",
-        true
-      ).format();
+      let extractDate = tdc().formatDate(queryData.queryDate);
     //   console.log(extractDate);
-      let exactStartTime = queryData.queryStart;
-      let extractEndTime = queryData.queryEnd;
-      let convertedStartTime =
-        Number(exactStartTime.split(":")[0]) * 60 +
-        Number(exactStartTime.split(":")[1]) * 1000;
-
-
-      let convertedEndTime =
-        Number(extractEndTime.split(":")[0]) * 60 +
-        Number(extractEndTime.split(":")[1]) * 1000;
+      let convertedStartTime = tdc().convertToMilliSeconds(queryData.queryStart);
+      let convertedEndTime = tdc().convertToMilliSeconds(queryData.queryEnd);
+      
 
       var category = queryData.queryCategory ;
       let isCategoryExist = await Instrument.find({"category":category}).exec();
