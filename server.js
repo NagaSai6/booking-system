@@ -13,7 +13,6 @@ app.set("view engine", "ejs");
 
 // connection to DB
 
-app.use(helmet())
 
 mongoose
   .connect(process.env.URL, {
