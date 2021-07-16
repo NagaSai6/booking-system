@@ -2,15 +2,12 @@ const moment = require("moment");
 function timeAndDateController() {
   return {
     convertToMilliSeconds(num) {
-      return Number(num.split(":")[0]) * 60 + Number(num.split(":")[1]) * 1000;
+      return Number(num.split(":")[0]) *3600 + Number(num.split(":")[1]*60) * 1000;
     },
     formatDate(date) {
       return moment.utc(date, "DD-MM-YYYY", true).format();
     },
     findEndDate(st, et, sd) {
-      // console.log(typeof(sd));
-      // console.log(st);
-      // console.log(et);
       if (et - st < 0) {
         //    console.log("main loop entered");
         Date.prototype.addDays = function (days) {
