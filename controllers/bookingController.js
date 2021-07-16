@@ -13,18 +13,28 @@ function bookingController() {
       let instrumentName = req.body.instrumentName;
       let userName = req.user.customerName;
       let userMail = req.user.gmail;
-
+        
       let convertedStartTime = tdc().convertToMilliSeconds(req.body.queryStart);
-
+      let startTimeInTwelveHourFormat = tdc().twelvehourFormat(req.body.queryStart);
       let convertedEndTime = tdc().convertToMilliSeconds(req.body.queryEnd);
       let convertedDate = tdc().formatDate(req.body.queryDate);
+      let endTimeInTwelveHourFormat = tdc().twelvehourFormat(req.body.queryEnd);
+      // console.log("convertedStartDate:"+ typeof(convertedDate));
+
+      let cD = tdc().extractDate(convertedDate);
+      // console.log(cD);
+      let endDate = tdc().findEndDate(convertedStartTime,convertedEndTime,convertedDate);
+    
+      // console.log("convertedEndDate:"+ typeof(endDate));
+      let eD =  tdc().extractDate(endDate)
       if (convertedEndTime - convertedStartTime < 0) {
-        convertedEndTime = tdc().modifyEndtTime(convertedEndTime);
-        // console.log(convertedEndTime);
+        convertedEndTime = tdc().modifyEndTime(convertedEndTime);
       }
+
+
       let conflictBookings = await Booking.find({
         category: category,
-        date: convertedDate,
+        startDate: convertedDate,
         instrumentId: instrumentId,
       })
         .where("startTime")
@@ -36,14 +46,15 @@ function bookingController() {
       if (conflictBookings.length === 0) {
         let newBooking = new Booking({
           instrumentId: instrumentId,
+          userId: req.user._id,
           category: category,
+          instrumentName: instrumentName,
           userName: userName,
           userMail: userMail,
-          date: convertedDate,
+          startDate: convertedDate,
           startTime: convertedStartTime,
-          endTime: convertedEndTime,
-          userId: req.user._id,
-          instrumentName: instrumentName,
+          endDate : endDate,
+          endTime: convertedEndTime   
         });
 
         newBooking.save().then(async (newBooking) => {
@@ -64,9 +75,17 @@ function bookingController() {
                       bookingId: newBooking._id,
                       bookedUser: userName,
                       bookedInstrument: instrumentName,
-                    },
+                      bookingStartDate : cD,
+                      bookingEndDate : eD,
+                      bookingStartTime:startTimeInTwelveHourFormat ,
+                      bookingEndTime : endTimeInTwelveHourFormat
+                    }
                   };
-                  sgMail.send(mailOptions);
+                  sgMail.send(mailOptions,(err,result)=>{
+                    if(err){
+                      console.log(err);
+                    }
+                  });
                   return res.json({ message: "Successfully Booked" });
                 }
               );

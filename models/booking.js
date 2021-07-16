@@ -30,7 +30,7 @@ const bookingSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    date:{
+    startDate:{
         type:Date,
         required:true
     },
@@ -40,6 +40,10 @@ const bookingSchema = new mongoose.Schema({
     },
     endTime:{
         type:Number,
+        required:true
+    },
+    endDate:{
+        type:Date,
         required:true
     }
 },{timestamps:true});
