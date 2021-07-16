@@ -12,7 +12,7 @@ function adminController() {
 
       let categoryName = dataArray[0].category;
 
-      Instrument.find({ category: categoryName }, (err, result) => {
+      Instrument.find({ "category": categoryName }, (err, result) => {
         if (result.length != 0) {
           return res.json({ success: "category already exist" });
         } else {
@@ -46,7 +46,7 @@ function adminController() {
     editInstruments(req, res) {
       // res.render("admin/edit-instruments")
       let searchQuery = req.body.searchInput.toLowerCase();
-      Instrument.find({ category: searchQuery }, (err, editableItems) => {
+      Instrument.find({ "category": searchQuery }, (err, editableItems) => {
         if (editableItems.length === 0) {
           req.flash("info", "Category does not exist");
           res.redirect("/admin/manage-instruments");
@@ -66,10 +66,10 @@ function adminController() {
         });
     },
     async deleteInstruments(req, res) {
-      let instrumentExist = await Instrument.find({ _id: req.body.id }).exec();
+      let instrumentExist = await Instrument.find({ "_id": req.body.id }).exec();
       console.log(instrumentExist);
       if (instrumentExist.length != 0) {
-        Instrument.deleteOne({ _id: req.body.id }, (err, result) => {
+        Instrument.deleteOne({ "_id": req.body.id }, (err, result) => {
           if (err) {
             console.log(err);
             return res.json({ message: "failed to delete" });
@@ -118,7 +118,7 @@ function adminController() {
       updateDocument.instrumentName = updateData[2];
       // console.log(updateDocument);
 
-     await Instrument.findByIdAndUpdate({_id:id},{$set:updateDocument},{new:true},(err,result)=>{
+     await Instrument.findByIdAndUpdate({"_id":id},{$set:updateDocument},{new:true},(err,result)=>{
         if(err){
           console.log(err);
           return res.json({'message':'failed'})
@@ -158,14 +158,19 @@ function adminController() {
      }
     },
     makeAdmin(req,res){
-      User.findByIdAndUpdate({_id:req.body.userId},{$set:{"role":"admin"}},(err,result)=>{
+      console.log(req.body.userId);
+      User.findByIdAndUpdate({"_id":req.body.userId},{$set:{"role":"admin"}},(err,result)=>{
+        
         if(err){
           console.log(err);
           req.flash("info","Some thing went wrong ,Try again Later");
           return res.redirect("/admin/manage-users")
         }else{
+          // console.log(result)
           return res.redirect("/admin/manage-users")
         }
+      }).then(result=>{
+        // console.log(result);
       })
 
     }
