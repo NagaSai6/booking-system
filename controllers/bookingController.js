@@ -27,7 +27,7 @@ function bookingController() {
     
       // console.log("convertedEndDate:"+ typeof(endDate));
       let eD =  tdc().extractDate(endDate)
-      if (convertedEndTime - convertedStartTime < 0) {
+      if (convertedEndTime - convertedStartTime <= 0) {
         convertedEndTime = tdc().modifyEndTime(convertedEndTime);
       }
 

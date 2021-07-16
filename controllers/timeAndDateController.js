@@ -9,7 +9,7 @@ function timeAndDateController() {
       return moment.utc(date, "DD-MM-YYYY", true).format();
     },
     findEndDate(st, et, sd) {
-      if (et - st < 0) {
+      if (et - st <= 0) {
         //    console.log("main loop entered");
         Date.prototype.addDays = function (days) {
           const date = new Date(this.valueOf());
