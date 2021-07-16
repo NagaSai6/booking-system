@@ -2,7 +2,8 @@ const moment = require("moment");
 function timeAndDateController() {
   return {
     convertToMilliSeconds(num) {
-      return Number(num.split(":")[0]) *3600 + Number(num.split(":")[1]*60) * 1000;
+   let seconds = Number(num.split(":")[0]) *3600 + Number(num.split(":")[1]*60)  ;
+   return ( seconds * 1000 );
     },
     formatDate(date) {
       return moment.utc(date, "DD-MM-YYYY", true).format();
@@ -26,7 +27,7 @@ function timeAndDateController() {
     modifyEndTime(et) {
       // this method modifies end time relative to 00:00 of user selected date
       // used when end time crosses 24 hrs limit (next day)
-      let modifiedEndTime = et + 24 * 60;
+      let modifiedEndTime = et + 24 * 60 * 60 * 1000;
       return modifiedEndTime;
     },
     extractDate(cd) {
