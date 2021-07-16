@@ -13,9 +13,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+       
         <li class="nav-item dropdown">
         <%  if(user.role=="admin"){ %>
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,9 +27,11 @@
             </ul>
       <%    } %>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
+      <%  if(user.role === "FTE"){ %>
+          <li class="nav-item">
+            <a class="nav-link" href="/user/my-bookings" tabindex="-1" aria-disabled="true"><%= user.customerName%> Bookings</a>
+          </li>
+    <%    } %>
       </ul>
       <form class="d-flex">
         <a href="/user/google/logout" role="button" class="btn btn-dark" type="submit">Log Out</a>

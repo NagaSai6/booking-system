@@ -47,6 +47,7 @@ function routes(app) {
     availability().checkAvailability
   );
   app.post("/user/book-instrument", authenticate, booking().bookInstrument);
+  app.get('/user/my-bookings',authenticate,homePage().myBooking)
 }
 
 module.exports = routes;

@@ -191,3 +191,22 @@ table {
     border: 1px solid #ccc; 
     text-align: left; 
   }
+
+  /* user bookings page */
+  .booking-summary{
+    -webkit-border-top-left-radius: 50px;
+    -webkit-border-top-right-radius: 1px;
+    -webkit-border-bottom-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 50px;
+    -moz-border-radius-topright: 1px;
+    -moz-border-radius-bottomright: 20px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 5px;
+    background-color: orangered;
+    max-width: 100%;
+    max-height: 25%;
+  }
