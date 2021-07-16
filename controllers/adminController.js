@@ -113,10 +113,10 @@ function adminController() {
       const updateData = Object.keys(req.body).map((i) => req.body[i]);
       let updateDocument = {};
       let id = updateData[3];
-      console.log(typeof(id));
+      // console.log(typeof(id));
       updateDocument.image = updateData[1];
       updateDocument.instrumentName = updateData[2];
-      console.log(updateDocument);
+      // console.log(updateDocument);
 
      await Instrument.findByIdAndUpdate({_id:id},{$set:updateDocument},{new:true},(err,result)=>{
         if(err){
@@ -139,6 +139,35 @@ function adminController() {
           }
          return res.render('admin/manage-users',{users})
         })
+    },
+  async  removeAdmin(req,res){
+   let adminUsers = await  User.find({"role":"admin"}).exec()
+     if(adminUsers.length >1){
+       User.findByIdAndUpdate({_id:req.body.userId},{$set:{"role":"FTE"}},(err,result)=>{
+         if(err){
+           console.log(err);
+           req.flash("info","Some thing went wrong ,Try again Later");
+           res.redirect("/admin/manage-users")
+         }else{
+           res.redirect("/admin/manage-users")
+         }
+       })
+     }else{
+      req.flash("info","Atleast one admin should exist");
+      res.redirect("/admin/manage-users")
+     }
+    },
+    makeAdmin(req,res){
+      User.findByIdAndUpdate({_id:req.body.userId},{$set:{"role":"admin"}},(err,result)=>{
+        if(err){
+          console.log(err);
+          req.flash("info","Some thing went wrong ,Try again Later");
+          return res.redirect("/admin/manage-users")
+        }else{
+          return res.redirect("/admin/manage-users")
+        }
+      })
+
     }
   };
 }

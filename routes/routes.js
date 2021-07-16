@@ -33,6 +33,8 @@ function routes(app) {
   app.post("/admin/delete-instruments",adminAuth,admin().deleteInstruments);
   app.post("/admin/add-single-instrument",adminAuth,admin().addSingleInstrument);
   app.post("/admin/update-single-instrument",adminAuth,admin().updateSingleInstrument);
+  app.post("/admin/remove-admin",adminAuth,admin().removeAdmin);
+  app.post("/admin/make-admin",adminAuth,admin().makeAdmin);
   // global route
 
   app.get("/login", homePage().loginPage);

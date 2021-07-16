@@ -27,9 +27,6 @@ $("#AdminAddInstrument").on("click",async (e)=>{
       }
 })
 
-$()
-
-
 $(".updateData").on("click",async (e)=>{
     let updateData =JSON.parse(e.currentTarget.dataset.update);
     console.log(updateData);
