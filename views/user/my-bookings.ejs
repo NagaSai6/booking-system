@@ -26,7 +26,7 @@
       <hr style="border-top: 1px dashed orange;
       border-radius: 5px;">
       <div class="" style="background-color: #FDF6F0; padding: 20px;">
-        <p>B ooking ID : <%= book[i]._id %></p>
+        <p>Booking ID : <%= book[i]._id %></p>
 
         <p>Booked on : <%=luxon.fromISO(book[i].createdAt.toISOString(),{zone:'Asia/Kolkata'}).toFormat('hh:mm a dd LLL yyyy'); %></p>
 
