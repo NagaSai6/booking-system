@@ -28,7 +28,7 @@
       <div class="" style="background-color: #FDF6F0; padding: 20px;">
         <p>booking ID : <%= book[i]._id %></p>
 
-        <p>Booked At : <%=luxon.fromISO(book[i].createdAt.toISOString()).toLocaleString(luxon.DATETIME_MED); %></p>
+        <p>Booked At : <%=luxon.fromISO(book[i].createdAt.toISOString(),{zone:'Asia/Kolkata'}).toLocaleString(luxon.DATETIME_MED); %></p>
 
         <p>Booked Instrument : <%= book[i].instrumentName %></p>
 
