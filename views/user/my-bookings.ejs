@@ -26,9 +26,9 @@
       <hr style="border-top: 1px dashed orange;
       border-radius: 5px;">
       <div class="" style="background-color: #FDF6F0; padding: 20px;">
-        <p>booking ID : <%= book[i]._id %></p>
+        <p>B ooking ID : <%= book[i]._id %></p>
 
-        <p>Booked At : <%=luxon.fromISO(book[i].createdAt.toISOString(),{zone:'Asia/Kolkata'}).toLocaleString(luxon.DATETIME_MED); %></p>
+        <p>Booked on : <%=luxon.fromISO(book[i].createdAt.toISOString(),{zone:'Asia/Kolkata'}).toLocaleString(luxon.DATETIME_MED); %></p>
 
         <p>Booked Instrument : <%= book[i].instrumentName %></p>
 
@@ -38,13 +38,13 @@
         
         <div style="background-color: #F8E2CF;padding:20px;">
              
-           <p>Booking Start Date : <%= luxon.fromISO(book[i].startDate.toISOString()).toFormat("dd LLL yyyy") %></p>
+           <p> Start Date : <%= luxon.fromISO(book[i].startDate.toISOString()).toFormat("dd LLL yyyy") %></p>
 
-           <p>Booking Start Time : <strong><%=book[i].st %></strong></p>
+           <p>Start Time : <strong><%=book[i].st %></strong></p>
 
-           <p>Booking End Date : <%=luxon.fromISO(book[i].endDate.toISOString()).toFormat("dd LLL yyyy")%></p>
+           <p> End Date : <%=luxon.fromISO(book[i].endDate.toISOString()).toFormat("dd LLL yyyy")%></p>
 
-           <p>Booking End Time : <strong><%=book[i].et %></strong></p>
+           <p>End Time : <strong><%=book[i].et %></strong></p>
  
           
         </div>
