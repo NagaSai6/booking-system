@@ -38,7 +38,7 @@ $("#availabilityCheckForm").on("submit", (e) => {
 });
 
 function collectDataFromForm() {
-  window.queryCategory = $("#searchInput").val();
+  window.queryCategory = $("#searchInput").val().toLowerCase();
   window.queryDate = $("#datepicker").val();
   window.queryStart = $("#starttime").val();
   window.queryEnd = $("#endtime").val();
