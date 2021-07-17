@@ -1,6 +1,7 @@
 const Instrument = require("../models/instrument");
 const Booking = require("../models/booking");
-const moment = require("moment");
+const luxon = require("luxon");
+
 function homepagecontroller(){
   return {
     homePage(req,res){
@@ -21,7 +22,7 @@ function homepagecontroller(){
          let bookings = await Booking.find({"userId":req.user._id},
          null,{sort:{"createdAt": -1}});
          res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-         res.render("user/my-bookings",{book:bookings,moment:moment});
+         res.render("user/my-bookings",{book:bookings,luxon:luxon.DateTime});
     }
   }
 }

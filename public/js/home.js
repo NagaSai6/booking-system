@@ -5342,26 +5342,17 @@ function initBook(d, qd, qs, qe) {
         timer: 1500
       });
       return setTimeout(function () {
-        window.location.reload();
+        window.location.assign("/user/my-bookings");
       }, 1500);
     } else {
-      toastr.options = {
-        closeButton: false,
-        debug: false,
-        newestOnTop: true,
-        progressBar: true,
-        positionClass: "toast-top-center",
-        preventDuplicates: false,
-        showDuration: "300",
-        hideDuration: "1000",
-        timeOut: "5000",
-        extendedTimeOut: "1000",
-        showEasing: "swing",
-        hideEasing: "linear",
-        showMethod: "fadeIn",
-        hideMethod: "fadeOut"
-      };
-      return toastr["error"]("You could have been faster , This item has booked just now", "Oops");
+      sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+        position: "center",
+        icon: "error",
+        title: "Oops..",
+        text: "You could have been faster",
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   });
 }

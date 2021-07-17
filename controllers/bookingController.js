@@ -54,7 +54,9 @@ function bookingController() {
           startDate: convertedDate,
           startTime: convertedStartTime,
           endDate : endDate,
-          endTime: convertedEndTime   
+          endTime: convertedEndTime,
+          st :   startTimeInTwelveHourFormat,
+          et : endTimeInTwelveHourFormat
         });
 
         newBooking.save().then(async (newBooking) => {

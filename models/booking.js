@@ -45,6 +45,14 @@ const bookingSchema = new mongoose.Schema({
     endDate:{
         type:Date,
         required:true
+    },
+    st:{
+        type:String,
+        required: true
+    },
+    et:{
+        type:String,
+        required:true
     }
 },{timestamps:true});
 

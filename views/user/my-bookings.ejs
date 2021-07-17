@@ -12,22 +12,56 @@
     crossorigin="anonymous"
   />
   <link rel="stylesheet" href="/css/main.css">
+  <!-- <script src="/js/admin-1.js"></script> -->
 </head>
 <body>
     <%- include("../navbar.ejs") %>
 
   <%   if(book.length){ %>
-       <div class="container-fluid">
+   
+       <div class="container-fluid" style="position: relative;">
 
-        <div class="booking-summary">
-        <p>booking id : 456789</p>
-             
+   <%   for(let i=0;i<book.length;i++){ %>
+    <div style="background:#FCD8D4;" class="my-2">
+      <hr style="border-top: 1px dashed orange;
+      border-radius: 5px;">
+      <div class="" style="background-color: #FDF6F0; padding: 20px;">
+        <p>booking ID : <%= book[i]._id %></p>
+
+        <p>Booked At : <%=luxon.fromISO(book[i].createdAt.toISOString()).toLocaleString(luxon.DATETIME_MED); %></p>
+
+        <p>Booked Instrument : <%= book[i].instrumentName %></p>
+
+        <p> Instrument Category : <%=book[i].category %></p>
+         
         </div>
+        
+        <div style="background-color: #F8E2CF;padding:20px;">
+             
+           <p>Booking Start Date : <%= luxon.fromISO(book[i].startDate.toISOString()).toFormat("dd LLL yyyy") %></p>
+
+           <p>Booking Start Time : <strong><%=book[i].st %></strong></p>
+
+           <p>Booking End Date : <%=luxon.fromISO(book[i].endDate.toISOString()).toFormat("dd LLL yyyy")%></p>
+
+           <p>Booking End Time : <strong><%=book[i].et %></strong></p>
+ 
+          
+        </div>
+        <hr style="border-top: 1px dashed orangered;
+        border-radius: 5px;">
+     </div>
+
+
+  <%    } %>
+
 
        </div>
 
   <%   }else{ %>
-
+          <div style="text-align: center;padding: 10px;">
+            <h1>No Bookings Found</h1>
+          </div>
   <%   }  %>
 
     
