@@ -1,6 +1,12 @@
 {
     "folders": [
         {
+            "path": "../../react/first-app"
+        },
+        {
+            "path": "../../../../Downloads/react-complete-guide-code-04-react-state-events"
+        },
+        {
             "path": ".."
         }
     ]

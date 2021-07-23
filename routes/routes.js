@@ -25,16 +25,26 @@ function routes(app) {
 
   app.get("/", authenticate, homePage().homePage);
   // admin routes
-  app.get("/admin/manage-users",adminAuth,admin().manageUsers)
+  app.get("/admin/manage-users", adminAuth, admin().manageUsers);
+  app.get("/admin/manage-bookings", adminAuth, admin().manageBookings);
   app.get("/admin/add-instruments", adminAuth, admin().adminPage);
   app.post("/admin/add-instruments", adminAuth, admin().addInstruments);
-  app.get("/admin/manage-instruments",adminAuth,admin().manageInstruments);
-  app.post("/admin/manage-instruments",adminAuth,admin().editInstruments);
-  app.post("/admin/delete-instruments",adminAuth,admin().deleteInstruments);
-  app.post("/admin/add-single-instrument",adminAuth,admin().addSingleInstrument);
-  app.post("/admin/update-single-instrument",adminAuth,admin().updateSingleInstrument);
-  app.post("/admin/remove-admin",adminAuth,admin().removeAdmin);
-  app.post("/admin/make-admin",adminAuth,admin().makeAdmin);
+  app.get("/admin/manage-instruments", adminAuth, admin().manageInstruments);
+  app.post("/admin/manage-instruments", adminAuth, admin().editInstruments);
+  app.post("/admin/delete-instruments", adminAuth, admin().deleteInstruments);
+  app.post(
+    "/admin/add-single-instrument",
+    adminAuth,
+    admin().addSingleInstrument
+  );
+  app.post(
+    "/admin/update-single-instrument",
+    adminAuth,
+    admin().updateSingleInstrument
+  );
+  app.post("/admin/remove-admin", adminAuth, admin().removeAdmin);
+  app.post("/admin/make-admin", adminAuth, admin().makeAdmin);
+
   // global route
 
   app.get("/login", homePage().loginPage);
@@ -47,7 +57,7 @@ function routes(app) {
     availability().checkAvailability
   );
   app.post("/user/book-instrument", authenticate, booking().bookInstrument);
-  app.get('/user/my-bookings',authenticate,homePage().myBooking)
+  app.get("/user/my-bookings", authenticate, homePage().myBooking);
 }
 
 module.exports = routes;

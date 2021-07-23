@@ -1,18 +1,20 @@
 const Instrument = require("../models/instrument");
+const Booking = require("../models/booking");
 const User = require("../models/user");
+const luxon = require("luxon");
 function adminController() {
   return {
     adminPage(req, res) {
       res.render("admin/add-instruments");
     },
-    addInstruments(req, res) {
+    async addInstruments(req, res) {
       // console.log(req.body);
       const dataArray = Object.keys(req.body).map((i) => req.body[i]);
       // check whether category exists
 
       let categoryName = dataArray[0].category;
 
-      Instrument.find({ "category": categoryName }, (err, result) => {
+      await Instrument.find({ category: categoryName }, (err, result) => {
         if (result.length != 0) {
           return res.json({ success: "category already exist" });
         } else {
@@ -43,10 +45,10 @@ function adminController() {
           console.log(err);
         });
     },
-    editInstruments(req, res) {
+    async editInstruments(req, res) {
       // res.render("admin/edit-instruments")
       let searchQuery = req.body.searchInput.toLowerCase();
-      Instrument.find({ "category": searchQuery }, (err, editableItems) => {
+      await Instrument.find({ category: searchQuery }, (err, editableItems) => {
         if (editableItems.length === 0) {
           req.flash("info", "Category does not exist");
           res.redirect("/admin/manage-instruments");
@@ -66,10 +68,10 @@ function adminController() {
         });
     },
     async deleteInstruments(req, res) {
-      let instrumentExist = await Instrument.find({ "_id": req.body.id }).exec();
+      let instrumentExist = await Instrument.find({ _id: req.body.id }).exec();
       console.log(instrumentExist);
       if (instrumentExist.length != 0) {
-        Instrument.deleteOne({ "_id": req.body.id }, (err, result) => {
+        Instrument.deleteOne({ _id: req.body.id }, (err, result) => {
           if (err) {
             console.log(err);
             return res.json({ message: "failed to delete" });
@@ -109,7 +111,7 @@ function adminController() {
           res.json({ message: "failed" });
         });
     },
-  async updateSingleInstrument(req, res) {
+    async updateSingleInstrument(req, res) {
       const updateData = Object.keys(req.body).map((i) => req.body[i]);
       let updateDocument = {};
       let id = updateData[3];
@@ -118,62 +120,80 @@ function adminController() {
       updateDocument.instrumentName = updateData[2];
       // console.log(updateDocument);
 
-     await Instrument.findByIdAndUpdate({"_id":id},{$set:updateDocument},{new:true},(err,result)=>{
-        if(err){
-          console.log(err);
-          return res.json({'message':'failed'})
-        }else{
-          return res.json({'message':'success'})
-        }
-
-      }).then(success=>{
-        console.log(success);
-      })
-
-    },
-  async  manageUsers(req,res){
-        await User.find({},(err,users)=>{
-          if(err){
+      await Instrument.findByIdAndUpdate(
+        { _id: id },
+        { $set: updateDocument },
+        { new: true },
+        (err, result) => {
+          if (err) {
             console.log(err);
-            return res.json({'message':'Failed to get users'})
+            return res.json({ message: "failed" });
+          } else {
+            return res.json({ message: "success" });
           }
-         return res.render('admin/manage-users',{users})
-        })
-    },
-  async  removeAdmin(req,res){
-   let adminUsers = await  User.find({"role":"admin"}).exec()
-     if(adminUsers.length >1){
-       User.findByIdAndUpdate({_id:req.body.userId},{$set:{"role":"FTE"}},(err,result)=>{
-         if(err){
-           console.log(err);
-           req.flash("info","Some thing went wrong ,Try again Later");
-           res.redirect("/admin/manage-users")
-         }else{
-           res.redirect("/admin/manage-users")
-         }
-       })
-     }else{
-      req.flash("info","Atleast one admin should exist");
-      res.redirect("/admin/manage-users")
-     }
-    },
-    makeAdmin(req,res){
-      console.log(req.body.userId);
-      User.findByIdAndUpdate({"_id":req.body.userId},{$set:{"role":"admin"}},(err,result)=>{
-        
-        if(err){
-          console.log(err);
-          req.flash("info","Some thing went wrong ,Try again Later");
-          return res.redirect("/admin/manage-users")
-        }else{
-          // console.log(result)
-          return res.redirect("/admin/manage-users")
         }
-      }).then(result=>{
+      ).then((success) => {
+        console.log(success);
+      });
+    },
+    async manageUsers(req, res) {
+      await User.find({}, (err, users) => {
+        if (err) {
+          console.log(err);
+          return res.json({ message: "Failed to get users" });
+        }
+        return res.render("admin/manage-users", { users });
+      });
+    },
+    async removeAdmin(req, res) {
+      let adminUsers = await User.find({ role: "admin" }).exec();
+      if (adminUsers.length > 1) {
+        User.findByIdAndUpdate(
+          { _id: req.body.userId },
+          { $set: { role: "FTE" } },
+          (err, result) => {
+            if (err) {
+              console.log(err);
+              req.flash("info", "Some thing went wrong ,Try again Later");
+              res.redirect("/admin/manage-users");
+            } else {
+              res.redirect("/admin/manage-users");
+            }
+          }
+        );
+      } else {
+        req.flash("info", "Atleast one admin should exist");
+        res.redirect("/admin/manage-users");
+      }
+    },
+    makeAdmin(req, res) {
+      console.log(req.body.userId);
+      User.findByIdAndUpdate(
+        { _id: req.body.userId },
+        { $set: { role: "admin" } },
+        (err, result) => {
+          if (err) {
+            console.log(err);
+            req.flash("info", "Some thing went wrong ,Try again Later");
+            return res.redirect("/admin/manage-users");
+          } else {
+            // console.log(result)
+            return res.redirect("/admin/manage-users");
+          }
+        }
+      ).then((result) => {
         // console.log(result);
-      })
+      });
+    },
+    async manageBookings(req, res) {
+      let bookings = await Booking.find({}).exec();
 
-    }
+      let filteredBookings = bookings.filter((booking) => {
+        return (booking.endTime - booking.startTime >= 21600000) ;
+      });
+      console.log(filteredBookings);
+      res.render("admin/manage-bookings", { fb: filteredBookings,luxon:luxon.DateTime});
+    },
   };
 }
 
