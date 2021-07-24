@@ -17,7 +17,6 @@ function routes(app) {
       scope: [
         "openid",
         "profile",
-        "https://outlook.office.com/nagasai317gmail.onmicrosoft.com",
       ],
     })
   );
