@@ -12,7 +12,7 @@ const passport = require("passport");
 
 function routes(app) {
   app.get(
-    "/auth/google",
+    "/auth/microsoft",
     passport.authenticate("windowslive", {
       scope: [
         "openid",

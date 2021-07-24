@@ -16,7 +16,7 @@ function init(passport) {
       {
         clientID: process.env.OUTLOOK_CLIENT_ID,
         clientSecret: process.env.OUTLOOK_CLIENT_SECRET,
-        callbackURL: 'http://localhost:7000/microsoft/auth/redirect',
+        callbackURL: process.env.OUTLOOK_CLIENT_CALLBACK,
         passReqToCallback: true, // allows us to pass in the req from our route (lets us check if a user is logged in or not)
       },
       (req, token, refreshToken, profile, done) => {
