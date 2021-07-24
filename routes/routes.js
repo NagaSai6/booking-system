@@ -13,11 +13,17 @@ const passport = require("passport");
 function routes(app) {
   app.get(
     "/auth/google",
-    passport.authenticate("google", { scope: ["profile", "email"] })
+    passport.authenticate("windowslive", {
+      scope: [
+        "openid",
+        "profile",
+        "https://outlook.office.com/nagasai317gmail.onmicrosoft.com",
+      ],
+    })
   );
   app.get(
-    "/google/auth/redirect",
-    passport.authenticate("google", {
+    "/microsoft/auth/redirect",
+    passport.authenticate("windowslive", {
       successRedirect: "/",
       failureRedirect: "/login",
     })
