@@ -6,19 +6,19 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "FTE",
     },
-    msToken:{
+    googleToken:{
       type:String,
       required:true
     },
-    msId: {
+    googleId: {
       type: String,
       required: true,
     },
-    msUserName: {
+    customerName: {
       type: String,
       required: true,
     },
-    outLookMail: {
+    gmail: {
       type: String,
       required: true,
     }

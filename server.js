@@ -68,7 +68,7 @@ app.use(
 
 // configuring Passport
 
-const passportInit = require("./auth/w-passport");
+const passportInit = require("./auth/passport");
 passportInit(passport);
 app.use(passport.initialize());
 app.use(passport.session());

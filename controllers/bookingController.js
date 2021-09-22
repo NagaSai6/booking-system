@@ -11,8 +11,8 @@ function bookingController() {
       let instrumentId = req.body._id;
       let category = req.body.category;
       let instrumentName = req.body.instrumentName;
-      let userName = req.user.msUserName;
-      let userMail = req.user.outLookMail;
+      let userName = req.user.customerName;
+      let userMail = req.user.gmail;
         
       let convertedStartTime = tdc().convertToMilliSeconds(req.body.queryStart);
       let startTimeInTwelveHourFormat = tdc().twelvehourFormat(req.body.queryStart);
@@ -50,7 +50,7 @@ function bookingController() {
           category: category,
           instrumentName: instrumentName,
           userName: userName,
-          userMail: outLookMail,
+          userMail: userMail,
           startDate: convertedDate,
           startTime: convertedStartTime,
           endDate : endDate,
