@@ -1,3 +1,7 @@
+# Deployed app
+<p> can be found here </p>
+<a href="https://lab-instruments-bookings.herokuapp.com/" > link </a>
+
 # Frontend Stack
 
 <br/>
@@ -55,7 +59,7 @@
 # View Engine
 
 <br/>
-<a href="https://ejs.co/">EJS</a>
+ <a href="https://ejs.co/">EJS</a>
 <br/>
 
 
